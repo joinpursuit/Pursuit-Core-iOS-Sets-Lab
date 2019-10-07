@@ -12,7 +12,9 @@ var numbersWithNoDuplicates = [Int]()
 
 // Your code here
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+numbersWithNoDuplicates = Set(numbers).sorted()
+
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -24,7 +26,20 @@ var scoresThatAppearOnce = [Int]()
 
 // Your code here
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+var scoreCounts = [Int:Int]()
+var x = 0
+
+for score in scores.sorted() {
+    scoreCounts[score] = (scoreCounts[score] ?? 0) + 1
+}
+for (key,value) in scoreCounts {
+    if value == 1 {
+        scoresThatAppearOnce.append(key)
+    }
+}
+scoresThatAppearOnce = scoresThatAppearOnce.sorted()
+
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -39,7 +54,9 @@ var arrThree: [Int] = []
 
 // Your code here
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+arrThree = Array(Set(arrOne).union(Set(arrTwo))).sorted()
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -52,7 +69,9 @@ var arrSix: [Int] = []
 
 // Your code here
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+arrSix = Array(Set(arrFour).intersection(Set(arrFive))).sorted()
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -67,7 +86,10 @@ var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+var numsOneTwo = Set(numsOne).union(Set(numsTwo))
+var numsThreeFour = Set(numsThree).union(Set(numsFour))
+allNumsWithNoDuplicates = Array(Set(numsOneTwo).union(numsThreeFour)).sorted()
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -85,12 +107,53 @@ var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
 // Your code here
+//var strArray = [strOne, strTwo, strThree]
+//for string in strArray {
+//    for char in string where char != " " && char != "," {
+//        print(char)
+//    }
+//    print()
+//}
+let alphabet = "abcdefghijklmnopqrstuvwxyz"
+let alphabetSet = Set(alphabet)
+var strCheck = strOne
+var strArray = [Character]()
+for char in strCheck where char != " " && char != ","  {
+    let character = char.lowercased()
+    strArray.append(Character(character))
+}
+if Set(strArray).sorted() == alphabetSet.sorted() {
+    strOneIsPangram = true
+}
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 
+strCheck = strTwo
+strArray = []
+for char in strCheck where char != " " && char != ","  {
+    let character = char.lowercased()
+    strArray.append(Character(character))
+}
+if Set(strArray).sorted() == alphabetSet.sorted() {
+    strTwoIsPangram = true
+}
 
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+
+strCheck = strThree
+strArray = []
+for char in strCheck where char != " " && char != ","  {
+    let character = char.lowercased()
+    strArray.append(Character(character))
+}
+if Set(strArray).sorted() == alphabetSet.sorted() {
+    strThreeIsPangram = true
+}
+print(strThreeIsPangram)
+
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+
+//need to go back to this question when I learn functions.
 
 
 
