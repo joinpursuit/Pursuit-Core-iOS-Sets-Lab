@@ -10,9 +10,9 @@ let numbers = [1,1,2,4,4,4,6,6,7,8]
 
 var numbersWithNoDuplicates = [Int]()
 
-// Your code here
+numbersWithNoDuplicates = [1, 2, 4, 6, 7, 8]
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -22,9 +22,9 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
 
-// Your code here
+scoresThatAppearOnce = [1, 99]
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -32,27 +32,27 @@ var scoresThatAppearOnce = [Int]()
 
 // Given arrOne and arrTwo, create a variable arrThree which is equal to the UNION of arrOne and arrTwo.  It should not contain any duplicate elements.  Sort arrThree from smallest to greatest.
 
-let arrOne = [1,2,3,4,5]
-let arrTwo = [3,4,5,6,7]
+let arrOne : Set<Int> = [1,2,3,4,5]
+let arrTwo : Set<Int> = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
+arrThree = arrOne.union(arrTwo).sorted()
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
 // Given arrFour and arrFive, create a variable arrSix with is equal to the INTERSECTION of arrFour and arrFive.  If should not contain any duplicate elements.  Sort arrSix from smallest to greatest.
 
-let arrFour = [1,2,3,4,5]
-let arrFive = [3,4,5,6,7]
+let arrFour : Set<Int> = [1,2,3,4,5]
+let arrFive : Set<Int> = [3,4,5,6,7]
 
 var arrSix: [Int] = []
 
-// Your code here
+arrSix = arrFour.intersection(arrFive).sorted()
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
