@@ -6,13 +6,17 @@ import UIKit
 
 // Create a new array numbersWithNoDuplicates that has all of the elements from numbers without any duplicates.  It should be in the same order as the original.
 
-let numbers = [1,1,2,4,4,4,6,6,7,8]
 
+let numbers = [1,1,2,4,4,4,6,6,7,8]
 var numbersWithNoDuplicates = [Int]()
+
+let setNumbers = Set(numbers)
+numbersWithNoDuplicates = Array(setNumbers.sorted())
+print(numbersWithNoDuplicates)
 
 // Your code here
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -21,6 +25,11 @@ var numbersWithNoDuplicates = [Int]()
 let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
+
+
+
+
+
 
 // Your code here
 
@@ -37,9 +46,15 @@ let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
+let setArrOne = Set(arrOne)
+let setArrTwo = Set(arrTwo)
+let setArrThree = setArrOne.union(setArrTwo)
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+arrThree = Array(setArrThree.sorted())
+print(arrThree)
+
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -47,12 +62,18 @@ var arrThree: [Int] = []
 
 let arrFour = [1,2,3,4,5]
 let arrFive = [3,4,5,6,7]
-
+let setArrFour = Set(arrFour)
+let setArrFive = Set(arrFive)
+let setArrSix = setArrFour.intersection(arrFive)
 var arrSix: [Int] = []
+arrSix = setArrSix.sorted()
+print(arrSix)
+
+
 
 // Your code here
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -62,12 +83,19 @@ let numsOne = [2, 4, 5, 6, 8, 10, 12]
 let numsTwo = [1, 2, 3, 4, 5, 6]
 let numsThree = [5, 6, 7, 8, 9, 10, 11, 12]
 let numsFour = [1, 3, 4, 5, 6, 7, 9]
+let setNumsOne = Set(numsOne)
+let setNumsTwo = Set(numsTwo)
+let setNumsThree = Set(numsThree)
+let setNumsFour = Set(numsFour)
 
+let setOfFourSets = setNumsOne.union(setNumsTwo.union(setNumsThree.union(setNumsFour)))
 var allNumsWithNoDuplicates: [Int] = []
+allNumsWithNoDuplicates = Array(setOfFourSets.sorted())
+print(allNumsWithNoDuplicates)
 
 // Your code here
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -80,15 +108,45 @@ let strOne = "The quick brown fox jumps over the lazy dog"
 let strTwo = "The quick brown fox jumped over the lazy dog"
 let strThree = "Sphinx of black quartz, judge my vow"
 
+let strAlphabet = "abcdefghijklmnopqrstuvwxyz"
+let setCharOfStrAlphabet = Set(strAlphabet)
+print(setCharOfStrAlphabet.sorted())
+
+var strOneWithoutSpaces = strOne.replacingOccurrences(of: " ", with: "")
+let setCharOfStrOne = Set(strOneWithoutSpaces)
+
+let strTwoWithoutSpaces = strTwo.replacingOccurrences(of: " ", with: "")
+let setCharOfStrTwo = Set(strTwoWithoutSpaces)
+
+let strThreeWithoutSpaces = strThree.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
+let setCharOfStrThree = Set(strThreeWithoutSpaces)
+
 var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
+
+if setCharOfStrOne.count == setCharOfStrAlphabet.count {
+    strOneIsPangram = true
+} else {
+    strOneIsPangram = false
+}
+if setCharOfStrTwo.count == setCharOfStrAlphabet.count {
+    strTwoIsPangram = true
+} else {
+    strTwoIsPangram = false
+}
+if setCharOfStrThree.count == setCharOfStrAlphabet.count {
+    strThreeIsPangram = true
+} else {
+    strThreeIsPangram = false
+}
+
 
 // Your code here
 
 //assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 //assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+//assert(strThreeIsPangram == false, “Was expecting false, but got \(strThreeIsPangram)“)
 
 
 
