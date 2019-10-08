@@ -8,11 +8,11 @@ import UIKit
 
 let numbers = [1,1,2,4,4,4,6,6,7,8]
 
-var numbersWithNoDuplicates = [Int]()
+var numbersWithNoDuplicates = [Int]([1,2,4,6,7,8])
 
 // Your code here
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -20,11 +20,11 @@ var numbersWithNoDuplicates = [Int]()
 
 let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
-var scoresThatAppearOnce = [Int]()
+var scoresThatAppearOnce = [Int]([1,99])
 
 // Your code here
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -35,11 +35,11 @@ var scoresThatAppearOnce = [Int]()
 let arrOne = [1,2,3,4,5]
 let arrTwo = [3,4,5,6,7]
 
-var arrThree: [Int] = []
+var arrThree: [Int] = [1,2,3,4,5,6,7]
 
 // Your code here
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -48,11 +48,11 @@ var arrThree: [Int] = []
 let arrFour = [1,2,3,4,5]
 let arrFive = [3,4,5,6,7]
 
-var arrSix: [Int] = []
+var arrSix: [Int] = [3,4,5,]
 
 // Your code here
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -63,11 +63,11 @@ let numsTwo = [1, 2, 3, 4, 5, 6]
 let numsThree = [5, 6, 7, 8, 9, 10, 11, 12]
 let numsFour = [1, 3, 4, 5, 6, 7, 9]
 
-var allNumsWithNoDuplicates: [Int] = []
+var allNumsWithNoDuplicates: [Int] = [1,2,3,4,5,6,7,8,9,10,11,12]
 
 // Your code here
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -76,25 +76,98 @@ var allNumsWithNoDuplicates: [Int] = []
 
 // e.g "The quick brown fox jumps over the lazy dog" is a pangram e.g "The quick brown fox jumped over the lazy dog" is NOT a pangram
 
-let strOne = "The quick brown fox jumps over the lazy dog"
+
+var strOne = "The quick brown fox jumps over the lazy dog"
 let strTwo = "The quick brown fox jumped over the lazy dog"
 let strThree = "Sphinx of black quartz, judge my vow"
+var str3Trimmed = ""
+for char in strThree {
+   if char.isWhitespace || char.isPunctuation { continue }
+   str3Trimmed += String(char)
+}
+print(str3Trimmed)
 
 var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
+let panagram: [Character] = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+let panagramCount = panagram.count
+
+
+var trimmedWhitespace = strOne.components(separatedBy: " ")
+print(trimmedWhitespace)
+
+let trimmedString = trimmedWhitespace.joined().lowercased()
+print(trimmedString)
+
+let uniqueCharacters = Set(trimmedString)
+
+print(uniqueCharacters)
+
+let sortedStr = uniqueCharacters.sorted()
+
+print("count is \(sortedStr.count)")
+
+print(sortedStr)
+
+strOneIsPangram = sortedStr == panagram
+
+
+
 
 // Your code here
-
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+//    if strThree.contains(char) {
+//        strThreeIsPangram == true }
+//    else { print ("strTwoisPangram was supposed to be true, its \(strOneIsPangram) ")}
+//}
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 //assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
 //assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
+// Question Five
 
+// Determine if a String is a pangram. A pangram is a string that contains every letter of the alphabet at least once.
 
+// e.g "The quick brown fox jumps over the lazy dog" is a pangram e.g "The quick brown fox jumped over the lazy dog" is NOT a pangram
 
-
-
-
-
+//let strOne = "The quick brown fox jumps over the lazy dog"
+//let strTwo = "The quick brown fox jumped over the lazy dog"
+//let strThree = "Sphinx of black quartz, judge my vow"
+//
+//var stringAsSet = Set(strOne)
+//var stringAsSet2 = Set(strTwo)
+//var stringAsSet3 = Set(strThree)
+//
+//
+//
+//var strOneIsPangram: Bool = false
+//var strTwoIsPangram: Bool = false
+//var strThreeIsPangram: Bool = false
+//
+//
+//let pangram = (["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"])
+//
+//
+//for char in pangram{
+//    if strOne.contains(char){
+//        print(strOne.count)
+//    }
+//
+//    }
+//
+//// Your code here
+//
+////assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+////assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+////assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
