@@ -9,10 +9,17 @@ import UIKit
 let numbers = [1,1,2,4,4,4,6,6,7,8]
 
 var numbersWithNoDuplicates = [Int]()
+var numberSet: Set<Int> = []
+var numTuple: (Bool,Int)
 
-// Your code here
+for num in numbers{
+    numTuple = numberSet.insert(num)
+    if(numTuple.0){
+        numbersWithNoDuplicates.append(numTuple.1)
+    }
+}
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -22,9 +29,24 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
 
-// Your code here
+var scoreSet: Set<Int> = []
+var scoresThatAppearTwice: Set<Int> = []
+var testTuple: (Bool,Int)
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+for score in scores{
+    testTuple = scoreSet.insert(score)
+    if(!testTuple.0){
+        scoresThatAppearTwice.insert(testTuple.1)
+    }
+}
+
+for score in scores{
+    if !scoresThatAppearTwice.contains(score){
+        scoresThatAppearOnce.append(score)
+    }
+}
+
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -37,9 +59,14 @@ let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
+var setOne: Set<Int> = Set(arrOne)
+var setTwo: Set<Int> = Set(arrTwo)
+var setThree = setOne.union(setTwo)
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+arrThree = Array(setThree)
+arrThree = arrThree.sorted()
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -50,9 +77,14 @@ let arrFive = [3,4,5,6,7]
 
 var arrSix: [Int] = []
 
-// Your code here
+var setFour: Set<Int> = Set(arrFour)
+var setFive: Set<Int> = Set(arrFive)
+var setSix = setFour.intersection(setFive)
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+arrSix = Array(setSix)
+arrSix = arrSix.sorted()
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -65,9 +97,15 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 
 var allNumsWithNoDuplicates: [Int] = []
 
-// Your code here
+var setNumOne: Set<Int> = Set(numsOne)
+var setNumTwo: Set<Int> = Set(numsTwo)
+var setNumThree: Set<Int> = setNumOne.union(numsTwo)
+setNumOne = setNumThree.union(numsThree)
+setNumTwo = setNumOne.union(numsFour)
+allNumsWithNoDuplicates = Array(setNumTwo)
+allNumsWithNoDuplicates = allNumsWithNoDuplicates.sorted()
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -84,11 +122,37 @@ var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
-// Your code here
+var panSet: Set<Character> = []
+var panCheckSet: Set<Character> = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+var panTuple: (Bool,Character)
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+for str in strOne{
+    panSet.insert(Character(str.lowercased()))
+}
+
+strOneIsPangram = true
+strOneIsPangram = panCheckSet.isSubset(of: panSet)
+panSet = []
+
+for str in strTwo{
+    panSet.insert(Character(str.lowercased()))
+}
+
+strTwoIsPangram = true
+strTwoIsPangram = panCheckSet.isSubset(of: panSet)
+panSet = []
+
+for str in strThree{
+    panSet.insert(Character(str.lowercased()))
+}
+
+strThreeIsPangram = true
+strThreeIsPangram = panCheckSet.isSubset(of: panSet)
+panSet = []
+
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
