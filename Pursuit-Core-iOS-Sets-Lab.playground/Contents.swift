@@ -12,7 +12,10 @@ var numbersWithNoDuplicates = [Int]()
 
 // Your code here
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+numbersWithNoDuplicates = Array(Set(numbers)).sorted()
+print(numbersWithNoDuplicates)
+
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -23,8 +26,20 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 var scoresThatAppearOnce = [Int]()
 
 // Your code here
+//var maxFreqInt = 0
+var frequencyDict: [Int: Int] = [:]
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+for key in scores {
+    frequencyDict[key] = (frequencyDict[key] ?? 0) + 1
+}
+
+for (key, _) in frequencyDict {
+    if frequencyDict[key] == 1{
+        scoresThatAppearOnce.append(key)
+    }
+}
+scoresThatAppearOnce = scoresThatAppearOnce.sorted()
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -39,7 +54,9 @@ var arrThree: [Int] = []
 
 // Your code here
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+arrThree = Array(Set(arrOne).union(Set(arrTwo))).sorted()
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -52,7 +69,9 @@ var arrSix: [Int] = []
 
 // Your code here
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+arrSix = Array(Set(arrFour).intersection(Set(arrFive))).sorted()
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -67,7 +86,14 @@ var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+var frequencyDictionary:[Int:Int] = [:]
+var allElements = numsOne + numsTwo + numsThree + numsFour
+
+allNumsWithNoDuplicates = Array(Set(allElements))
+allNumsWithNoDuplicates = allNumsWithNoDuplicates.sorted()
+print(allNumsWithNoDuplicates)
+
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -84,11 +110,84 @@ var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
-// Your code here
+[["strOne": 0 ],["strTwo":0]]
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+
+// Your code here
+var frequencyDictChar1: [Character:Int] = [:]
+var frequencyDictChar2: [Character:Int] = [:]
+var frequencyDictChar3: [Character:Int] = [:]
+
+var alphabet = "abcdefghijklmnopqrstuvwxyz"
+var alphabetSet = Set(alphabet)
+
+var str1:Set<Character> = []
+var str1Sorted = str1.sorted()
+
+var str2 = ""
+var str3 = ""
+
+//strOneIsPangram
+for char in strOne.lowercased() where char != " " && char != ","{
+    frequencyDictChar1[char] = (frequencyDictChar1[char] ?? 0) + 1
+}
+
+for (key, _) in frequencyDictChar1 {
+    if (frequencyDictChar1[key] ?? 0) >= 1 {
+        strOneIsPangram = true
+        str1.insert(key)
+    }
+}
+
+print(str1Sorted)
+
+//str1 = String(str1.sorted())
+if str1 == alphabetSet {
+    strOneIsPangram = true
+}
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+
+//strTwoIsPangram
+for char in strTwo.lowercased() where char != " " && char != ","{
+    frequencyDictChar2[char] = (frequencyDictChar2[char] ?? 0) + 1
+}
+
+for (key, _) in frequencyDictChar2 {
+    if (frequencyDictChar2[key] ?? 0) >= 1 {
+        strTwoIsPangram = true
+        str2.append(key)
+    }
+}
+
+print(frequencyDictChar2)
+
+str2 = String(str2.sorted())
+if str2 == alphabet {
+    strTwoIsPangram = true
+}
+
+
+print(strTwoIsPangram)
 //assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+
+//strThreeIsPangram
+for char in strThree.lowercased() where char != " " && char != ","{
+    frequencyDictChar3[char] = (frequencyDictChar3[char] ?? 0) + 1
+}
+
+for (key, _) in frequencyDictChar3 {
+    if (frequencyDictChar3[key] ?? 0) >= 1 {
+        strThreeIsPangram = true
+        str3.append(key)
+    }
+}
+
+str3 = String(str3.sorted())
+if str3 == alphabet {
+    strThreeIsPangram = true
+}
+
+assert(strThreeIsPangram == false, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
