@@ -113,13 +113,13 @@ let setCharOfStrAlphabet = Set(strAlphabet)
 print(setCharOfStrAlphabet.sorted())
 
 var strOneWithoutSpaces = strOne.replacingOccurrences(of: " ", with: "")
-let setCharOfStrOne = Set(strOneWithoutSpaces)
+let setCharOfStrOne = Set(strOneWithoutSpaces.lowercased())
 
 let strTwoWithoutSpaces = strTwo.replacingOccurrences(of: " ", with: "")
-let setCharOfStrTwo = Set(strTwoWithoutSpaces)
+let setCharOfStrTwo = Set(strTwoWithoutSpaces.lowercased())
 
 let strThreeWithoutSpaces = strThree.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
-let setCharOfStrThree = Set(strThreeWithoutSpaces)
+let setCharOfStrThree = Set(strThreeWithoutSpaces.lowercased())
 
 var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
@@ -127,26 +127,32 @@ var strThreeIsPangram: Bool = false
 
 if setCharOfStrOne.count == setCharOfStrAlphabet.count {
     strOneIsPangram = true
+    print("strOne is Pangram")
 } else {
     strOneIsPangram = false
+    print("strOne is not Pangram")
 }
 if setCharOfStrTwo.count == setCharOfStrAlphabet.count {
     strTwoIsPangram = true
+    print("strTwo is Pangram")
 } else {
     strTwoIsPangram = false
+    print("strTwo is not Pangram")
 }
 if setCharOfStrThree.count == setCharOfStrAlphabet.count {
     strThreeIsPangram = true
+    print("strThree is Pangram")
 } else {
     strThreeIsPangram = false
+    print("strThree is not Pangram")
 }
 
 
 // Your code here
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == false, “Was expecting false, but got \(strThreeIsPangram)“)
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting true, but got \(strThreeIsPangram)")
 
 
 
