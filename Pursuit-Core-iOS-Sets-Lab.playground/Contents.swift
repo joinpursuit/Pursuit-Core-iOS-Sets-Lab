@@ -106,20 +106,18 @@ assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was 
 let strOne = "The quick brown fox jumps over the lazy dog"
 let strTwo = "The quick brown fox jumped over the lazy dog"
 let strThree = "Sphinx of black quartz, judge my vow"
-let isPangram = Set("abcdefghijklmnopqrstuvwxyz ")
+let alphabets = Set("abcdefghijklmnopqrstuvwxyz")
 let str1 = Set(strOne.lowercased())
 let str2 = Set(strTwo.lowercased())
 let str3 = Set(strThree.lowercased())
 
-
-
-var strOneIsPangram: Bool = isPangram == str1
-var strTwoIsPangram: Bool = isPangram == str2
-var strThreeIsPangram: Bool = isPangram == str3
+var strOneIsPangram: Bool = alphabets.isSubset(of: str1)
+var strTwoIsPangram: Bool = alphabets.isSubset(of: str2)
+var strThreeIsPangram: Bool = alphabets.isSubset(of: str3)
 
 assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-assert(strThreeIsPangram == false, "Was expecting false, but got \(strThreeIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
