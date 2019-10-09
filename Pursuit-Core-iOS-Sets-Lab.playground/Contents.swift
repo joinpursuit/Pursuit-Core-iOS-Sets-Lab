@@ -13,7 +13,7 @@ var numbersWithNoDuplicates = [Int]()
 // Your code here
 
 numbersWithNoDuplicates = Array(Set(numbers)).sorted()
-print(numbersWithNoDuplicates)
+//print(numbersWithNoDuplicates)
 
 assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
@@ -91,7 +91,7 @@ var allElements = numsOne + numsTwo + numsThree + numsFour
 
 allNumsWithNoDuplicates = Array(Set(allElements))
 allNumsWithNoDuplicates = allNumsWithNoDuplicates.sorted()
-print(allNumsWithNoDuplicates)
+//print(allNumsWithNoDuplicates)
 
 assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
@@ -110,7 +110,7 @@ var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
-[["strOne": 0 ],["strTwo":0]]
+//[["strOne": 0 ],["strTwo":0]]
 
 
 // Your code here
@@ -119,13 +119,13 @@ var frequencyDictChar2: [Character:Int] = [:]
 var frequencyDictChar3: [Character:Int] = [:]
 
 var alphabet = "abcdefghijklmnopqrstuvwxyz"
-var alphabetSet = Set(alphabet)
+var alphabetSet = Set(alphabet).sorted()
 
 var str1:Set<Character> = []
-var str1Sorted = str1.sorted()
 
-var str2 = ""
-var str3 = ""
+
+var str2:Set<Character> = []
+var str3:Set<Character> = []
 
 //strOneIsPangram
 for char in strOne.lowercased() where char != " " && char != ","{
@@ -138,14 +138,16 @@ for (key, _) in frequencyDictChar1 {
         str1.insert(key)
     }
 }
+var str1Sorted = str1.sorted()
+//print(str1Sorted)
+//print(alphabetSet)
 
-print(str1Sorted)
-
-//str1 = String(str1.sorted())
-if str1 == alphabetSet {
+if str1Sorted == alphabetSet {
     strOneIsPangram = true
+} else {
+    strTwoIsPangram = false
 }
-assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 
 //strTwoIsPangram
 for char in strTwo.lowercased() where char != " " && char != ","{
@@ -155,20 +157,20 @@ for char in strTwo.lowercased() where char != " " && char != ","{
 for (key, _) in frequencyDictChar2 {
     if (frequencyDictChar2[key] ?? 0) >= 1 {
         strTwoIsPangram = true
-        str2.append(key)
+        str2.insert(key)
     }
 }
+var str2Sorted = str2.sorted()
+//print(str2Sorted)
+//print(alphabetSet)
 
-print(frequencyDictChar2)
-
-str2 = String(str2.sorted())
-if str2 == alphabet {
+if str2Sorted == alphabetSet {
     strTwoIsPangram = true
+} else {
+    strTwoIsPangram = false
 }
 
-
-print(strTwoIsPangram)
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
 
 //strThreeIsPangram
 for char in strThree.lowercased() where char != " " && char != ","{
@@ -178,22 +180,18 @@ for char in strThree.lowercased() where char != " " && char != ","{
 for (key, _) in frequencyDictChar3 {
     if (frequencyDictChar3[key] ?? 0) >= 1 {
         strThreeIsPangram = true
-        str3.append(key)
+        str3.insert(key)
     }
 }
+var str3Sorted = str3.sorted()
+//print(str3Sorted)
+//print(alphabetSet)
 
-str3 = String(str3.sorted())
-if str3 == alphabet {
+if str3Sorted == alphabetSet {
     strThreeIsPangram = true
+} else {
+    strThreeIsPangram = false
 }
 
-assert(strThreeIsPangram == false, "Was expecting false, but got \(strThreeIsPangram)")
-
-
-
-
-
-
-
-
+assert(strThreeIsPangram == true, "Was expecting true, but got \(strThreeIsPangram)")
 
