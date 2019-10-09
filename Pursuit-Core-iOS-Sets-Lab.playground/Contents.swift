@@ -134,7 +134,7 @@ for char in strOne.lowercased() where char != " " && char != ","{
 
 for (key, _) in frequencyDictChar1 {
     if (frequencyDictChar1[key] ?? 0) >= 1 {
-        strOneIsPangram = true
+//        strOneIsPangram = true
         str1.insert(key)
     }
 }
@@ -156,7 +156,7 @@ for char in strTwo.lowercased() where char != " " && char != ","{
 
 for (key, _) in frequencyDictChar2 {
     if (frequencyDictChar2[key] ?? 0) >= 1 {
-        strTwoIsPangram = true
+//        strTwoIsPangram = true
         str2.insert(key)
     }
 }
@@ -179,7 +179,7 @@ for char in strThree.lowercased() where char != " " && char != ","{
 
 for (key, _) in frequencyDictChar3 {
     if (frequencyDictChar3[key] ?? 0) >= 1 {
-        strThreeIsPangram = true
+//        strThreeIsPangram = true
         str3.insert(key)
     }
 }
