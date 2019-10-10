@@ -10,7 +10,11 @@ let numbers = [1,1,2,4,4,4,6,6,7,8]
 
 var numbersWithNoDuplicates = [Int]()
 
-numbersWithNoDuplicates = [1, 2, 4, 6, 7, 8]
+var noDuplicates = Set(numbers)
+numbersWithNoDuplicates = Array(noDuplicates).sorted()
+
+print(numbers)
+print(numbersWithNoDuplicates)
 
 assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
@@ -22,9 +26,13 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
 
-scoresThatAppearOnce = [1, 99]
 
-assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+
+//scoresThatAppearOnce = [1, 99]
+
+
+
+//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -32,25 +40,36 @@ assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scores
 
 // Given arrOne and arrTwo, create a variable arrThree which is equal to the UNION of arrOne and arrTwo.  It should not contain any duplicate elements.  Sort arrThree from smallest to greatest.
 
-let arrOne : Set<Int> = [1,2,3,4,5]
-let arrTwo : Set<Int> = [3,4,5,6,7]
+let arrOne = [1,2,3,4,5]
+let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-arrThree = arrOne.union(arrTwo).sorted()
+let setOne = Set(arrOne)
+let setTwo = Set(arrTwo)
 
+let setThree = setOne.union(setTwo).sorted()
+
+arrThree = Array(setThree)
+print(arrThree)
 assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
 // Given arrFour and arrFive, create a variable arrSix with is equal to the INTERSECTION of arrFour and arrFive.  If should not contain any duplicate elements.  Sort arrSix from smallest to greatest.
 
-let arrFour : Set<Int> = [1,2,3,4,5]
-let arrFive : Set<Int> = [3,4,5,6,7]
+let arrFour = [1,2,3,4,5]
+let arrFive = [3,4,5,6,7]
 
 var arrSix: [Int] = []
 
-arrSix = arrFour.intersection(arrFive).sorted()
+let setFour = Set(arrFour)
+let setFive = Set(arrFive)
+
+let setSix = setFour.intersection(setFive).sorted()
+
+arrSix = Array(setSix)
+print(arrSix)
 
 assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
