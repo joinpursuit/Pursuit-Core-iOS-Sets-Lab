@@ -159,12 +159,3 @@ strThreeIsPangram = Set(trimmedStr3) == alphabets
 assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
 assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
-
-
-
-
-
-
-
-
-
