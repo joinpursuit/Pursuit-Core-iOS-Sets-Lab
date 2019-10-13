@@ -126,6 +126,10 @@ var strThreeIsPangram: Bool = false
 
 let alphabets: Set<Character> = Set("abcdefghijklmnopqrstuvwxyz")
 
+//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+//assert(strThreeIsPangram == true, "Was expecting true, but got \(strThreeIsPangram)")
+
 print(alphabets)
 
 var trimmedStr = ""
