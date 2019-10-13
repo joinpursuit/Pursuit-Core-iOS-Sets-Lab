@@ -26,13 +26,23 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
 
+var visitedScores: Set<Int> = []
+var uniqueScores: Set<Int> = []
 
+for score in scores {
+    if !visitedScores.contains(score)   {
+        visitedScores.insert(score)
+        uniqueScores.insert(score)
+    }
+    else    {
+        uniqueScores.remove(score)
+    }
+}
 
-//scoresThatAppearOnce = [1, 99]
+scoresThatAppearOnce = uniqueScores.sorted()
+print(scoresThatAppearOnce)
 
-
-
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -85,8 +95,17 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
+let allNumsArray = [numsOne, numsTwo, numsThree, numsFour]
+var combineNumsArray = [Int]()
+for arr in allNumsArray {
+    combineNumsArray += arr
+}
+print(combineNumsArray)
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+allNumsWithNoDuplicates = Set(combineNumsArray).sorted()
+print(allNumsWithNoDuplicates)
+
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -105,9 +124,41 @@ var strThreeIsPangram: Bool = false
 
 // Your code here
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+let alphabets: Set<Character> = Set("abcdefghijklmnopqrstuvwxyz")
+
+print(alphabets)
+
+var trimmedStr = ""
+var trimmedStr2 = ""
+var trimmedStr3 = ""
+
+for char in strOne.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr += String(char)
+    }
+}
+
+strOneIsPangram = Set(trimmedStr) == alphabets
+
+for char in strTwo.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr2 += String(char)
+    }
+}
+
+strTwoIsPangram = Set(trimmedStr2) == alphabets
+
+for char in strThree.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr3 += String(char)
+    }
+}
+
+strThreeIsPangram = Set(trimmedStr3) == alphabets
+
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
