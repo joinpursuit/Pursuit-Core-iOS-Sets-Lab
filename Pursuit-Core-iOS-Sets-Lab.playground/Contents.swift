@@ -11,8 +11,13 @@ let numbers = [1,1,2,4,4,4,6,6,7,8]
 var numbersWithNoDuplicates = [Int]()
 
 // Your code here
+//for num in numbers {
+//    numbersWithNoDuplicates.append(num)
+//}
+numbersWithNoDuplicates = Array(Set<Int>(numbers)).sorted()
+print(numbersWithNoDuplicates)
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -24,7 +29,24 @@ var scoresThatAppearOnce = [Int]()
 
 // Your code here
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+var onceOnlyDict = [Int:Int]()
+
+
+for key in scores {
+    onceOnlyDict[key] = (onceOnlyDict[key] ?? 0) + 1
+}
+
+for (key, value) in onceOnlyDict {
+    if value == 1 {
+        scoresThatAppearOnce.append(key)
+    }
+}
+
+scoresThatAppearOnce = scoresThatAppearOnce.sorted()
+
+print(onceOnlyDict)
+print(scoresThatAppearOnce)
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -38,8 +60,12 @@ let arrTwo = [3,4,5,6,7]
 var arrThree: [Int] = []
 
 // Your code here
+var combo = Set (arrOne + arrTwo)
+//combo.sorted()
+arrThree = Array(combo.sorted())
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+
 
 // b.
 
@@ -51,8 +77,13 @@ let arrFive = [3,4,5,6,7]
 var arrSix: [Int] = []
 
 // Your code here
+Set(arrFour)
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+var combo2 = Set(arrFour).intersection(Set(arrFive))
+
+arrSix = Array(combo2)
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -66,8 +97,12 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
+var combo3 = Set(numsOne).union(Set(numsTwo))
+var combo4 = Set(numsThree).union(Set(numsFour))
+var combo5 = combo3.union(combo4)
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+allNumsWithNoDuplicates = Array(combo5.sorted())
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
