@@ -10,9 +10,13 @@ let numbers = [1,1,2,4,4,4,6,6,7,8]
 
 var numbersWithNoDuplicates = [Int]()
 
-// Your code here
+var noDuplicates = Set(numbers)
+numbersWithNoDuplicates = Array(noDuplicates).sorted()
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+print(numbers)
+print(numbersWithNoDuplicates)
+
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -22,9 +26,23 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
 
-// Your code here
+var visitedScores: Set<Int> = []
+var uniqueScores: Set<Int> = []
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+for score in scores {
+    if !visitedScores.contains(score)   {
+        visitedScores.insert(score)
+        uniqueScores.insert(score)
+    }
+    else    {
+        uniqueScores.remove(score)
+    }
+}
+
+scoresThatAppearOnce = uniqueScores.sorted()
+print(scoresThatAppearOnce)
+
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -37,9 +55,14 @@ let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
+let setOne = Set(arrOne)
+let setTwo = Set(arrTwo)
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+let setThree = setOne.union(setTwo).sorted()
+
+arrThree = Array(setThree)
+print(arrThree)
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -50,9 +73,15 @@ let arrFive = [3,4,5,6,7]
 
 var arrSix: [Int] = []
 
-// Your code here
+let setFour = Set(arrFour)
+let setFive = Set(arrFive)
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+let setSix = setFour.intersection(setFive).sorted()
+
+arrSix = Array(setSix)
+print(arrSix)
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -66,8 +95,17 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
+let allNumsArray = [numsOne, numsTwo, numsThree, numsFour]
+var combineNumsArray = [Int]()
+for arr in allNumsArray {
+    combineNumsArray += arr
+}
+print(combineNumsArray)
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+allNumsWithNoDuplicates = Set(combineNumsArray).sorted()
+print(allNumsWithNoDuplicates)
+
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -86,15 +124,42 @@ var strThreeIsPangram: Bool = false
 
 // Your code here
 
+let alphabets: Set<Character> = Set("abcdefghijklmnopqrstuvwxyz")
+
 //assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 //assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
 //assert(strThreeIsPangram == true, "Was expecting true, but got \(strThreeIsPangram)")
 
+print(alphabets)
 
+var trimmedStr = ""
+var trimmedStr2 = ""
+var trimmedStr3 = ""
 
+for char in strOne.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr += String(char)
+    }
+}
 
+strOneIsPangram = Set(trimmedStr) == alphabets
 
+for char in strTwo.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr2 += String(char)
+    }
+}
 
+strTwoIsPangram = Set(trimmedStr2) == alphabets
 
+for char in strThree.lowercased() {
+    if alphabets.contains(char) {
+        trimmedStr3 += String(char)
+    }
+}
 
+strThreeIsPangram = Set(trimmedStr3) == alphabets
 
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
